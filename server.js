@@ -19,7 +19,7 @@ app.listen(port, () => {
 });
 
 /* List Students */
-app.post("/list", (req, res) => {
+app.get("/list", (req, res) => {
     fs.readFile('./students.json', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err);

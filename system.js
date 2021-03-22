@@ -8,7 +8,7 @@ $(function(){
         event.preventDefault();
 
         /* List Students */
-        $.post("./list", (data) => {
+        $.get("./list", (data) => {
             $("#list-body").empty();
             $.each(JSON.parse(data), function(index, val){
                 $("#list-body").append(`${index}: ${val}<br>`);
