@@ -9,9 +9,9 @@ $(function(){
 
         /* List Students */
         $.get("./list", (data) => {
-            $("#list-body").empty();
+            $("#list-respond").empty();
             $.each(JSON.parse(data), function(index, val){
-                $("#list-body").append(`${index}: ${val}<br>`);
+                $("#list-respond").append(`${index}: ${val}<br>`);
             });
         });
     });
@@ -38,10 +38,14 @@ $(function(){
 
         /* Request add */
         $.post("./add", {
-            id: ,
-            name: 
+            id: $("#add-id").val(),
+            name: $("#add-name").val()
         }, (data) => {
-            // Refresh List? 
+            // Update list 
+            $("#list-respond").empty();
+            $.each(JSON.parse(data), function(index, val){
+                $("#list-respond").append(`${index}: ${val}<br>`);
+            });
         });
     });
 });
