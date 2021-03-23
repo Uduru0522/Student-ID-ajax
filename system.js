@@ -15,4 +15,21 @@ $(function(){
             });
         });
     });
+
+    $("#ajax-search button").on("click", (event) => {
+        event.preventDefault();
+        
+        /* Request search */
+        const id = $("#student_id").val();
+        $.post("./search", {
+            id: id
+        }, (data) => {
+            if(data.found){
+                $("#search-respond").html(`<h2>Hello, ${data.name}!</h2>`);   
+            }
+            else{
+                $("#search-respond").html(`<h3>Sorry, ${id} doesn't exist.</h3>`);
+            }
+        });
+    });
 });
