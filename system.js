@@ -20,7 +20,7 @@ $(function(){
         event.preventDefault();
         
         /* Request search */
-        const id = $("#student_id").val();
+        const id = $("#search-id").val();
         $.post("./search", {
             id: id
         }, (data) => {
@@ -30,6 +30,18 @@ $(function(){
             else{
                 $("#search-respond").html(`<h3>Sorry, ${id} doesn't exist.</h3>`);
             }
+        });
+    });
+
+    $("#ajax-add button").on("click", (event) => {
+        event.preventDefault();
+
+        /* Request add */
+        $.post("./add", {
+            id: ,
+            name: 
+        }, (data) => {
+            // Refresh List? 
         });
     });
 });
