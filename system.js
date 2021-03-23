@@ -9,10 +9,7 @@ $(function(){
 
         /* List Students */
         $.get("./list", (data) => {
-            $("#list-respond").empty();
-            $.each(JSON.parse(data), function(index, val){
-                $("#list-respond").append(`${index}: ${val}<br>`);
-            });
+            updateListDiv(data);
         });
     });
 
@@ -41,11 +38,25 @@ $(function(){
             id: $("#add-id").val(),
             name: $("#add-name").val()
         }, (data) => {
-            // Update list 
-            $("#list-respond").empty();
-            $.each(JSON.parse(data), function(index, val){
-                $("#list-respond").append(`${index}: ${val}<br>`);
-            });
+            updateListDiv(data);
+        });
+    });
+
+    $("#ajax-delete button").on("click", (event) => {
+        event.preventDefault();
+
+        /* Request delete */
+        $.post("./delete", {
+            id: $("#delete-id").val()
+        }, (data) => {
+            updateListDiv(data);
         });
     });
 });
+
+function updateListDiv(data){
+    $("#list-respond").empty();
+    $.each(JSON.parse(data), function(index, val){
+        $("#list-respond").append(`${index}: ${val}<br>`);
+    });
+}

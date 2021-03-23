@@ -58,7 +58,20 @@ app.post("/add", async (req, resp) => {
     resp.send(JSON.stringify(obj));
 });
 /* Delete Student */
+app.post("/delete", async (req, resp) => {
+    const obj = JSON.parse(await readJSON("./students.json"));
+    delete obj[req.body.id];
 
+    // Write back to JSON
+    fs.writeFile("./students.json", JSON.stringify(obj, null, 4), (err) => {
+        if(err){
+            console.log("Write file failed: " + err);
+        }
+    })
+
+    // Respond with updated JSON string
+    resp.send(JSON.stringify(obj));
+});
 
 /* Read JSON file */
 function readJSON(path){
