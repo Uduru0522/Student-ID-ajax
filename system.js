@@ -4,7 +4,6 @@ $(function(){
 
     
     $("#ajax-list button").on("click", (event) => {
-        /* What is this? */
         event.preventDefault();
 
         /* List Students */
